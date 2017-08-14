@@ -30,7 +30,10 @@ Mavo.Elements.register(".tinymce", {
 			}).then(editors => {
 				this.element.tinymce = editors[0];
 
-				this.element.tinymce.on("change keyup paste cut", evt => {
+				const events = true ? "change keyup paste cut" : "change";
+				console.log(`Binding to ${events}`)
+				this.element.tinymce.on(events, evt => {
+					console.log(`${evt.type} fired (content: ${this.getValue()})`)
 					this.value = this.getValue();
 				});
 			});
